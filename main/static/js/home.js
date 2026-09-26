@@ -1,16 +1,16 @@
-document.addEventListener("DOMContentLoader", function(){
+document.addEventListener("DOMContentLoaded", function () {
     const nameSearch = document.getElementById("name-search")
     const tags = document.querySelectorAll(".tag")
     const projects = document.querySelectorAll(".project")
 
-    function filterProjects(){
+    function filterProjects() {
         const nameQuery = nameSearch.value.toLowerCase();
 
         projects.forEach((project) => {
-            const name = project.getAttribute("data-name")
+            const name = project.getAttribute('data-name')
             const nameMatch = name.includes(nameQuery)
 
-            if (nameMatch){
+            if (nameMatch) {
                 project.style.display = "";
             } else {
                 project.style.display = "none";
@@ -18,12 +18,13 @@ document.addEventListener("DOMContentLoader", function(){
         })
     }
 
-    tags.forEach((tag)=> {
-        tag.addEventListener("click", function(){
-            const selectedTag = this.getAttribute("data-tags")
-            
+    tags.forEach((tag) => {
+        tag.addEventListener("click", function () {
+            const selectedTag = this.getAttribute("data-tag")
+
             projects.forEach((project) => {
-                if (projectTags.includes(selectedTag)){
+                const projectTags = project.getAttribute("data-tags")
+                if (projectTags.includes(selectedTag)) {
                     project.style.display = ""
                 } else {
                     project.style.display = "none"
@@ -31,7 +32,6 @@ document.addEventListener("DOMContentLoader", function(){
             })
         })
     })
-
 
     nameSearch.addEventListener("keyup", filterProjects)
 })
